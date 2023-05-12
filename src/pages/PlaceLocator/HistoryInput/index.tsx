@@ -1,10 +1,11 @@
 import { useSelector } from "react-redux";
 import { List, ListItem, ListItemIcon, ListItemText, IconButton, Typography, Divider} from '@mui/material';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
-import DeleteIcon from '@mui/icons-material/Delete';
+import ArrowIcon from '@mui/icons-material/ArrowCircleRightOutlined';
 import { RootState } from "../../../redux/store";
+import { HistoryInputProps } from "./interface";
 
-const HistoryInput = () => {
+const HistoryInput = ({navigate} : HistoryInputProps) => {
     const {searchHistories} = useSelector((s : RootState) => s)
 
     return(
@@ -21,8 +22,8 @@ const HistoryInput = () => {
                             <Divider variant="fullWidth" component="li" />
                             <ListItem
                                 secondaryAction={
-                                    <IconButton edge="end" aria-label="delete">
-                                        <DeleteIcon />
+                                    <IconButton edge="end" aria-label="navigate" onClick={() => navigate(value.place_id)} title="Navigate to Marker">
+                                        <ArrowIcon />
                                     </IconButton>
                                 }
 

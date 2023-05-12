@@ -49,6 +49,12 @@ const PlaceLocator = () => {
 
         setMarker(searchHistories)
     }
+
+    const navigateToMarker = async (placeId: string) => {
+        const result = await getGeoLocation(placeId)
+
+        map?.setCenter(result)
+    }
     
     useEffect(() => {
         if(searchHistories.length > 0){
@@ -64,7 +70,7 @@ const PlaceLocator = () => {
                     </FormControl>
                 </Box>
                 <Box position={'absolute'} bottom={'24px'} right={'4rem'} zIndex={10} width={'300px'} sx={{backgroundColor: 'white'}} boxShadow={'10px 10px 25px 0px rgba(0,0,0,0.5)'}>
-                    <HistoryInput />
+                    <HistoryInput navigate={navigateToMarker}/>
                 </Box>
                 <GoogleMap
                     mapContainerStyle={containerStyle}
